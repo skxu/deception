@@ -8,13 +8,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Deception implements ApplicationListener {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Texture texture;
 	private Sprite sprite;
+	private Animation animation;
+	private float elapsedTime = 0;
+	private TextureAtlas textureAtlas;
 	
 	@Override
 	public void create() {		
@@ -33,12 +38,15 @@ public class Deception implements ApplicationListener {
 		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+		textureAtlas = new TextureAtlas(Gdx.files.internal("data/spritesheet.atlas"));
+        animation = new Animation(1/5f, textureAtlas.getRegions());
 	}
 
 	@Override
 	public void dispose() {
 		batch.dispose();
 		texture.dispose();
+		textureAtlas.dispose();
 	}
 
 	@Override
@@ -46,9 +54,11 @@ public class Deception implements ApplicationListener {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-		batch.setProjectionMatrix(camera.combined);
+		//batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		sprite.draw(batch);
+		//sprite.draw(batch);
+		elapsedTime += Gdx.graphics.getDeltaTime();
+        batch.draw(animation.getKeyFrame(elapsedTime, true), 0, 0);
 		batch.end();
 	}
 
