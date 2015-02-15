@@ -18,7 +18,7 @@ window.onload = function() {
   
     var Entities = [];
     
-    var myPlayer = new Player("bunny.png", Entities, stage);
+    var myPlayer = new Player("images/bunny.png", Entities, stage);
     myPlayer.onCreate();
   
     console.log(Entities);
