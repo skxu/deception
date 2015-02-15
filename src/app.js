@@ -26,17 +26,24 @@ window.onload = function() {
  
     stage.addChild(bunny);
     
-    stage.mousedown = function() {
-        bunny.position.y -= 10.0;
-    }
-    
-    
     function animate() {
  
         requestAnimFrame( animate );
  
         // just for fun, lets rotate mr rabbit a little
-        bunny.rotation += 10.0;
+        //bunny.rotation += 10.0;
+        if (Key.isDown(Key.UP)) {
+            bunny.position.y -= 5;
+        }
+        if (Key.isDown(Key.DOWN)) {
+            bunny.position.y += 5;
+        }
+        if (Key.isDown(Key.LEFT)) {
+            bunny.position.x -= 5;
+        }
+        if (Key.isDown(Key.RIGHT)) {
+            bunny.position.x += 5;
+        }
  
         // render the stage   
         renderer.render(stage);
