@@ -13,7 +13,6 @@ Entity.prototype.onCreate = function() {
   // create a new Sprite using the texture
   this.sprite = new PIXI.Sprite(this.texture);
 
-  console.log("hi");
   this.entityList.push(this);
   this.stage.addChild(this.sprite);
 };
