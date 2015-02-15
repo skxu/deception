@@ -1,4 +1,4 @@
-var Player = function(texture_path, entityList, stage, world) {
+var Ground = function(texture_path, entityList, stage, world) {
   this.texture_path = texture_path;
   this.entityList = entityList;
   this.stage = stage;
@@ -15,27 +15,7 @@ Player.prototype = Object.create(Entity.prototype);
 
 Player.prototype.onLoop = function() {
   
-  this.velocity = this.body.GetLinearVelocity();
-  
-  if (Key.isDown(Key.UP)) {
-      //this.sprite.position.y -= 50;
-      this.velocity.y = -50;
-  }
-  if (Key.isDown(Key.DOWN)) {
-      //this.sprite.position.y += 5;
-      this.velocity.y = 5;
-  }
-  if (Key.isDown(Key.LEFT)) {
-      //this.sprite.position.x -= 50;
-      this.velocity.x = -50;
-  }
-  if (Key.isDown(Key.RIGHT)) {
-      //this.sprite.position.x += 50;
-      this.velocity.x = 50;
-  }
-  
-  console.log(this.velocity);
-  this.body.SetLinearVelocity(this.velocity);
+  # does the ground move??
 
 };
 
@@ -62,4 +42,3 @@ Player.prototype.onCreate = function() {
   this.body = this.world.CreateBody(this.bodydef);
   this.body.m_userData = this.sprite;
 }
-
