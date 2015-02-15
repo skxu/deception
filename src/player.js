@@ -8,7 +8,6 @@ var Player = function(texture_path, entityList, stage) {
 Player.prototype = Object.create(Entity.prototype);
 
 Player.prototype.onLoop = function() {
-  console.log("called");
   if (Key.isDown(Key.UP)) {
       this.sprite.position.y -= 5;
   }
