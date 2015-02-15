@@ -1,14 +1,17 @@
-var Player = function(texture_path, entityList, stage) {
+var Player = function(texture_path, entityList, stage, world) {
   this.texture_path = texture_path;
   this.entityList = entityList;
   this.stage = stage;
+  this.world = world;
   this.name = "Sam";
+
   this.onCreate();
 }
 
 Player.prototype = Object.create(Entity.prototype);
 
 Player.prototype.onLoop = function() {
+  Entity.prototype.onLoop.call(this);
   if (Key.isDown(Key.UP)) {
       this.sprite.position.y -= 5;
   }
@@ -21,16 +24,10 @@ Player.prototype.onLoop = function() {
   if (Key.isDown(Key.RIGHT)) {
       this.sprite.position.x += 5;
   }
-
-
 };
 
 
 Player.prototype.onCreate = function() {
-  Entity.prototype.onCreate.call(this);
-  this.sprite.anchor.x = 0.5;
-  this.sprite.anchor.y = 0.5;
-  this.sprite.position.x = 200;
-  this.sprite.position.y = 150;
+  Entity.prototype.onCreate.call(this, 200, 150, 0.5);
 }
 

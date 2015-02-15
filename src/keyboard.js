@@ -1,6 +1,6 @@
 var Key = {
     _pressed: {},
-    
+
     LEFT: 37,
     UP: 38,
     RIGHT: 39,

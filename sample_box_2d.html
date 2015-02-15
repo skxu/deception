@@ -17,12 +17,12 @@
     <script>
     // setup axis-aligned bounding box
     var worldAABB = new b2AABB();
-    worldAABB.minVertex.Set(-1000, -1000);
-    worldAABB.maxVertex.Set(1000, 1000);
+    worldAABB.minVertex.Set(-8000, -8000);
+    worldAABB.maxVertex.Set(8000, 8000);
     // define gravity
-    var gravity = new b2Vec2(0, 300);
+    var gravity = new b2Vec2(0, 900);
     // body can sleep
-    var doSleep = true;
+    var doSleep = false;
     // create world
     var world = new b2World(worldAABB, gravity, doSleep);
     // frame duration
@@ -32,7 +32,7 @@
     // create an new instance of a pixi stage
     var stage = new PIXI.Stage(0x004466);
     // create a renderer instance
-    var renderer = new PIXI.CanvasRenderer(400, 300);
+    var renderer = new PIXI.CanvasRenderer(800, 700);
     // add the renderer view element to the DOM
     document.body.appendChild(renderer.view);
     // setup debug draw for box2d
@@ -72,7 +72,7 @@
     bunny.anchor.y = 0.5;
     stage.addChild(bunny);
     // add box2d bodies
-    addBody(ground, 200, 292, 400, 16);
+    addBody(ground, 200, 292, 400, 0.25);
     addBody(leftWall, 5, 150, 10, 300);
     addBody(rightWall, 395, 150, 10, 300);
     addBody(bunny, 200, 150, 25, 37, 0.5);
@@ -95,9 +95,9 @@
         bodyDef.position.Set(x, y);
         if (density) {
             shapeDef.density = density;
-            shapeDef.friction = 0.4;
-            shapeDef.restitution = 1.2;
-            bodyDef.rotation = 0.8;
+            shapeDef.friction = 10.0;
+            shapeDef.restitution = 0.0;
+            bodyDef.rotation = 0.0;
         }
         body = world.CreateBody(bodyDef);
         body.m_userData = sprite;
