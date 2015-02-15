@@ -1,10 +1,10 @@
-var Player = function(texture_path, entityList, stage, world) {
+var Player = function(texture_path, entityList, container, world) {
   this.texture_path = texture_path;
   this.entityList = entityList;
-  this.stage = stage;
+  //this.stage = stage;
   this.world = world;
   this.name = "Sam";
-
+  this.container = container;
   this.onCreate();
 }
 

@@ -1,7 +1,7 @@
-var Entity = function(texture_path, entityList, stage, world) {
+var Entity = function(texture_path, entityList, container, world) {
     this.texture_path = texture_path;
     this.entityList = entityList;
-    this.stage = stage;
+    //this.stage = stage;
     this.world = world;
     this.onCreate();
 };
@@ -17,9 +17,10 @@ Entity.prototype.onCreate = function(x, y, density) {
     this.sprite.anchor.y = 0.5;
     this.sprite.position.x = x;
     this.sprite.position.y = y;
-
+  
+    this.container.addChild(this.sprite);
     this.entityList.push(this);
-    this.stage.addChild(this.sprite);
+    //this.stage.addChild(this.sprite);
     
     // Add a bounding box
     this.addBoundingBox(density);
