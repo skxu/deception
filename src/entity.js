@@ -28,11 +28,11 @@ Entity.prototype.onCreate = function(x, y, density) {
 Entity.prototype.addBoundingBox = function(density) {
     var shapeDef = new b2BoxDef();
     shapeDef.extents.Set(this.sprite.width * 0.5, this.sprite.height * 0.5);
-    var bodyDef = new b2BodyDef();
-    bodyDef.AddShape(shapeDef);
+    this.bodyDef = new b2BodyDef();
+    this.bodyDef.AddShape(shapeDef);
     shapeDef.density = density;
-    bodyDef.position.Set(this.sprite.position.x, this.sprite.position.y);
-    this.body = this.world.CreateBody(bodyDef);
+    this.bodyDef.position.Set(this.sprite.position.x, this.sprite.position.y);
+    this.body = this.world.CreateBody(this.bodyDef);
 };
 
 Entity.prototype.onLoop = function() {

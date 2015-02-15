@@ -12,22 +12,25 @@ Player.prototype = Object.create(Entity.prototype);
 
 Player.prototype.onLoop = function() {
   Entity.prototype.onLoop.call(this);
+  this.velocity = this.body.GetLinearVelocity();
+  console.log(this.velocity);
   if (Key.isDown(Key.UP)) {
-      this.sprite.position.y -= 5;
+      this.velocity.y = -300;
   }
   if (Key.isDown(Key.DOWN)) {
-      this.sprite.position.y += 5;
+      
   }
   if (Key.isDown(Key.LEFT)) {
-      this.sprite.position.x -= 5;
+      this.velocity.x -= 50;
   }
   if (Key.isDown(Key.RIGHT)) {
-      this.sprite.position.x += 5;
+      this.velocity.x += 50;
   }
+  this.body.SetLinearVelocity(this.velocity);
 };
 
 
 Player.prototype.onCreate = function() {
-  Entity.prototype.onCreate.call(this, 200, 150, 0.5);
+  Entity.prototype.onCreate.call(this, 200, 150, 200.0);
 }
 

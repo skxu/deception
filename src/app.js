@@ -12,9 +12,9 @@ window.onload = function() {
     worldAABB.minVertex.Set(-1000, -1000);
     worldAABB.maxVertex.Set(1000, 1000);
     // define gravity
-    var gravity = new b2Vec2(0, 900);
+    var gravity = new b2Vec2(0, 600);
     // body can sleep
-    var doSleep = true;
+    var doSleep = false;
     // create world
     var world = new b2World(worldAABB, gravity, doSleep);
     // frame duration
@@ -51,7 +51,6 @@ window.onload = function() {
           Entities[i].onLoop();
         }
         
-        console.log("POOP");
         world.Step(timeStep, iteration);
  
         // render the stage   
