@@ -4,7 +4,7 @@ window.onload = function() {
     var stage = new PIXI.Stage(0x66FF99);
  
     // create a renderer instance.
-    var renderer = PIXI.autoDetectRenderer(400, 300);
+    var renderer = PIXI.autoDetectRenderer(1280, 720);
  
     // add the renderer view element to the DOM
     document.body.appendChild(renderer.view);
