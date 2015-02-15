@@ -1,9 +1,10 @@
-var Ground = function(texture_path, entityList, stage, world) {
+var Ground = function(texture_path, entityList, container, world) {
   this.texture_path = texture_path;
   this.entityList = entityList;
-  this.stage = stage;
+  //this.stage = stage;
   this.world = world;
   this.name = "Alvin";
+  this.container = container;
   this.onCreate(200, 300);
 }
 

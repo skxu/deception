@@ -3,7 +3,7 @@ window.onload = function() {
     // create an new instance of a pixi stage
     var stage = new PIXI.Stage(0x66FF99);
     // create a renderer instance.
-    var renderer = PIXI.autoDetectRenderer(400, 300);
+    var renderer = PIXI.autoDetectRenderer(1280, 720);
     // add the renderer view element to the DOM
     document.body.appendChild(renderer.view);
     
@@ -23,8 +23,11 @@ window.onload = function() {
     var iteration = 1;
 
     // Game Parameters
-    var Entities = [];
-    
+    var entityList = [];
+    var entityContainer = new PIXI.DisplayObjectContainer();
+    var mask;
+    var myPlayer;
+  
     function loadAllAssets() { 
         var assetsToLoad = ["images/bunny.png"];
         // create a new loader
@@ -36,21 +39,48 @@ window.onload = function() {
     } 
     
     function onAssetsLoaded () {
-        var myPlayer = new Player("images/bunny.png", Entities, stage, world);
-        var myGround = new Ground("images/bunny.png", Entities, stage, world);
+        
+        
+      
+        
+        
+        var fogTexture = new PIXI.Texture.fromImage("images/darkness.jpg");
+        var fogSprite = new PIXI.Sprite(fogTexture);
+        stage.addChild(fogSprite);
+      
+        var backgroundTexture = new PIXI.Texture.fromImage("images/real_background.jpg");
+        var backgroundSprite = new PIXI.Sprite(backgroundTexture);
+        entityContainer.addChild(backgroundSprite);
+      
+        myPlayer = new Player("images/bunny.png", entityList, entityContainer, world);
+        var myGround = new Ground("images/bunny.png", entityList, entityContainer, world);
+      
+        mask = new PIXI.Graphics();
+        stage.addChild(entityContainer);
+        mask.lineStyle(0);
+        entityContainer.mask = mask;
+        
+        
         requestAnimFrame( animate );
     }
     
     loadAllAssets();
     
+  
+  
     function animate() {
- 
+      
         requestAnimFrame( animate );
  
-        for (var i = 0; i < Entities.length; i++) {
-          Entities[i].onLoop();
+        for (var i = 0; i < entityList.length; i++) {
+          entityList[i].onLoop();
         }
         
+        mask.clear();
+        mask.beginFill(0x8bc5ff, 0.4);
+        mask.drawCircle(myPlayer.sprite.position.x,myPlayer.sprite.position.y,75);
+        //mask.rotation = count * 0.1;
+
         world.Step(timeStep, iteration);
  
         // render the stage   
