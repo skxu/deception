@@ -2,8 +2,7 @@ var Entity = function(texture_path, entityList, stage) {
     this.texture_path = texture_path;
     this.entityList = entityList;
     this.stage = stage;  
-
-  
+    this.onCreate();
 };
 
 Entity.prototype.onCreate = function() {

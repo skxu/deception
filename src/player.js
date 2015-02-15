@@ -3,6 +3,7 @@ var Player = function(texture_path, entityList, stage) {
   this.entityList = entityList;
   this.stage = stage;
   this.name = "Sam";
+  this.onCreate();
 }
 
 Player.prototype = Object.create(Entity.prototype);
@@ -26,7 +27,6 @@ Player.prototype.onLoop = function() {
 
 
 Player.prototype.onCreate = function() {
-  
   Entity.prototype.onCreate.call(this);
   this.sprite.anchor.x = 0.5;
   this.sprite.anchor.y = 0.5;
